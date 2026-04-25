@@ -3,16 +3,21 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(BASE_DIR, "dataset", "job_title_des.csv")
+def load_data():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, "dataset", "job_title_des.csv")
 
-# 🔥 SAFE CHECK (IMPORTANT)
-if not os.path.exists(file_path):
-    raise FileNotFoundError(f"Dataset missing at: {file_path}")
+    if not os.path.exists(file_path):
+        return None
 
-jobs = pd.read_csv(file_path)
+    return pd.read_csv(file_path)
 
 def recommend_jobs(skills):
+
+    jobs = load_data()
+
+    if jobs is None:
+        return pd.DataFrame()
 
     documents = jobs["Job Description"].astype(str).tolist()
 
