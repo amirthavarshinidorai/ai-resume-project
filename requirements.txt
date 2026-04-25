@@ -2,6 +2,7 @@ streamlit
 plotly
 matplotlib
 pandas
-PyPDF2
 numpy
 scikit-learn
+PyPDF2
+reportlab
