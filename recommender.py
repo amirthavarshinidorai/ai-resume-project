@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Safe file path (IMPORTANT for Streamlit Cloud)
+# SAFE PATH (works in local + Streamlit Cloud)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(BASE_DIR, "dataset", "job_title_des.csv")
 
@@ -11,7 +11,7 @@ jobs = pd.read_csv(file_path)
 
 def recommend_jobs(skills):
 
-    documents = jobs["Job Description"].tolist()
+    documents = jobs["Job Description"].astype(str).tolist()
 
     tfidf = TfidfVectorizer(stop_words="english")
     tfidf_matrix = tfidf.fit_transform(documents)
