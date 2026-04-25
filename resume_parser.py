@@ -2,7 +2,6 @@ print("Program Started")
 
 import PyPDF2
 from skill_extractor import extract_skills
-from recommender import recommend_jobs
 from roadmap import find_skill_gap
 
 
